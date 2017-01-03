@@ -1,3 +1,27 @@
-<h1>
-  {{title}}
-</h1>
+<div id="container">
+    <h1>
+    {{title}}
+    </h1>
+
+    <nav>
+		<h2 class="k-skip"><a href="#wrapper">Main navigation (Skip it)</a></h2>
+		<ul class="k-navbar">
+			<li class="home"><a [routerLink]="['home']">Home</a></li>
+			<li><a [routerLink]="['books']">Books</a></li>
+		</ul>
+	</nav>
+	
+	<div id="wrapper">
+		<div id="main" role="main">
+			<router-outlet></router-outlet>
+		</div>
+
+		<!-- <aside role="complementary">
+		</aside> -->
+	</div>
+	
+	<footer role="contentinfo">
+		<p class="k-copyright">&copy; SDCO</p>
+		<a [routerLink]="['contact']">Contact Us</a>
+	</footer>
+ </div>
