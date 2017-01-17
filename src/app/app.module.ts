@@ -14,6 +14,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { BasketComponent } from './basket/basket.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
+import { FilterFieldPipe } from './pipes/filter-field.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginComponent } from './login/login.component';
     BookDetailsComponent,
     BasketComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    FilterFieldPipe
   ],
   imports: [
     BrowserModule,
