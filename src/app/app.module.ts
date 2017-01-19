@@ -15,6 +15,7 @@ import { BasketComponent } from './basket/basket.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { FilterFieldPipe } from './pipes/filter-field.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FilterFieldPipe } from './pipes/filter-field.pipe';
     BasketComponent,
     ProfileComponent,
     LoginComponent,
-    FilterFieldPipe
+    FilterFieldPipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
