@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { FilterFieldPipe } from './pipes/filter-field.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { UpdateDataPipe } from './pipes/update-data.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     ProfileComponent,
     LoginComponent,
     FilterFieldPipe,
-    OrderByPipe
+    OrderByPipe,
+    UpdateDataPipe
   ],
   imports: [
     BrowserModule,
