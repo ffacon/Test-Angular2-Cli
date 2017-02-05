@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import {LocalStorageService} from './LocalStorage.service';
+import {LocalStorageService} from './localStorage.service';
 
 import {User} from  '../beans/user';
 import { Basket} from  '../beans/basket';
@@ -47,7 +47,7 @@ export class UserService {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
-		return this.http.post('/api/login', body, new RequestOptions({ headers: headers }))
+		return this.http.post('/api/app/login', body, new RequestOptions({ headers: headers }))
 			.map( (response: Response) => {
 				return <User>response.json();
 			})

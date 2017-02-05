@@ -19,7 +19,7 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { UpdateDataPipe } from './pipes/update-data.pipe';
 
 import {UserService} from './services/user.service';
-import {LocalStorageService} from './services/LocalStorage.service';
+import {LocalStorageService} from './services/localStorage.service';
 import {NewsService} from './services/news.service';
 import {BooksService} from './services/books.service';
 
