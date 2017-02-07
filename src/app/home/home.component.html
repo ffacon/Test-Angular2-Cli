@@ -21,19 +21,19 @@
 			</tr>
 		</tfoot>
 		<tbody>
-        <tr class="gradeA" *ngFor="let currentNew of news">
-            <td>{{currentNew.author}}</td>
-            <td>{{currentNew.category}}</td>
-            <td>{{currentNew.content}}</td>
-            <td><button class="btn" (click)="addLike(currentNew)"><img src="assets/styles/ktheme/img/like.png" /> {{currentNew.likes}}</button></td>
-            <td><button class="btn" (click)="deleteNews(currentNew)"><img src="assets/styles/ktheme/img/delete.png"/></button></td>
+        <tr class="gradeA" >
+            <td>author</td>
+            <td>category</td>
+            <td>content</td>
+            <td><button class="btn" ><img src="assets/styles/ktheme/img/like.png" /> likes</button></td>
+            <td><button class="btn" ><img src="assets/styles/ktheme/img/delete.png"/></button></td>
         </tr>
         <tr class="gradeA">
-            <td><input type="text" [(ngModel)]="nextNews.author" placeholder="author"/></td>
-            <td><input type="text" [(ngModel)]="nextNews.category" placeholder="category"/></td>
-            <td><input type="text" [(ngModel)]="nextNews.content" placeholder="content"/></td>
+            <td><input type="text"  placeholder="author"/></td>
+            <td><input type="text"  placeholder="category"/></td>
+            <td><input type="text"  placeholder="content"/></td>
             <td></td>
-            <td><button class="btn" (click)="addNews()"><img src="assets/styles/ktheme/img/add.png"/></button></td>
+            <td><button class="btn" ><img src="assets/styles/ktheme/img/add.png"/></button></td>
         </tr>
         </tbody>
     </table>
@@ -41,7 +41,7 @@
     <section class="k-panel">
         <h4 class="control"><a href="#">And the news of the day is...</a></h4>
         <div class="content">
-            <p><i>{{newsOfTheDay.content}}</i> from <b>{{newsOfTheDay.author}}</b></p>
+            <p><i>.content</i> from <b>author</b></p>
         </div>
     </section>
 </div>

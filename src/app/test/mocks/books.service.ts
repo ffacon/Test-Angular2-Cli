@@ -1,6 +1,7 @@
-import { SpyObject } from './helper';
+import { SpyObject } from './spy.obj';
 import { BooksService } from '../../services/books.service';
 import Spy = jasmine.Spy;
+
 
 export class MockBooksService extends SpyObject {
   getBooksSpy: Spy;
