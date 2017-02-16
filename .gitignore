@@ -6,6 +6,7 @@
 
 # dependencies
 /node_modules
+/api/express/node_modules
 
 # IDEs and editors
 /.idea
@@ -14,6 +15,8 @@
 .c9/
 *.launch
 .settings/
+.metadata/
+/api/*/target
 
 # IDE - VSCode
 .vscode/
