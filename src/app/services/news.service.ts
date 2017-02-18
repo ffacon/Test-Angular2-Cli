@@ -70,7 +70,7 @@ export class NewsService {
 		headers.append('Content-Type', 'application/json');
 		let postOptions= new RequestOptions({ headers: headers});
 
-		return this.http.post('/api/news', JSON.stringify(news), postOptions)
+		return this.http.post('/api/app/news', JSON.stringify(news), postOptions)
 		.do( (response: Response) => {
 			let addedNews: News = <News>response.json();
 			this.theNews = this.theNews

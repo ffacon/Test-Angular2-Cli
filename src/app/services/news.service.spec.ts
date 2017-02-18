@@ -6,11 +6,11 @@ import { NewsService } from './news.service';
 describe('NewsServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NewsServiceService]
+      providers: [NewsService]
     });
   });
 
-  it('should ...', inject([NewsServiceService], (service: NewsServiceService) => {
+  it('should ...', inject([NewsService], (service: NewsService) => {
     expect(service).toBeTruthy();
   }));
 });
