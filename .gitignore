@@ -17,6 +17,7 @@
 .settings/
 .metadata/
 /api/*/target
+/api/*/build
 
 # IDE - VSCode
 .vscode/
