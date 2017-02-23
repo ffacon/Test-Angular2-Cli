@@ -3,7 +3,10 @@
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.25.5.
 
 ## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+To launch the Back end server, open a console in subfolder /api/express/ and Run 'npm run serve'. 
+The app will serve the REST Api <a href="http://localhost:8080/" target="_blank">here</a>. 
+    
+Run `ng run start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
