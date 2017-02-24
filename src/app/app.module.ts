@@ -21,6 +21,7 @@ import { UpdateDataPipe } from './pipes/update-data.pipe';
 import {UserService} from './services/user.service';
 import {LocalStorageService} from './services/LocalStorage.service';
 import {NewsService} from './services/news.service';
+import {BooksService} from './services/books.service';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import {NewsService} from './services/news.service';
     HttpModule,
     routing
   ],
-  providers: [UserService,  LocalStorageService],
+  providers: [UserService,  LocalStorageService, BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
