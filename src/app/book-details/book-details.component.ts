@@ -25,16 +25,14 @@ export class BookDetailsComponent implements OnInit {
 		let that = this;
 		this.sub = this.route.params.subscribe( params => {
        this.bookId = +params['id']; // (+) converts string 'bookId' to a number
-
        // In a real app: dispatch action to load the details here.
+       this.bookService.getBook(this.bookId)
+			 .then((book: Book) => {
+				that.book = book;
+			  });
     });
 		
-
-
-		this.bookService.getBook(this.bookId)
-			.then((book: Book) => {
-				that.book = book;
-			});
+		
 	}
 
 
