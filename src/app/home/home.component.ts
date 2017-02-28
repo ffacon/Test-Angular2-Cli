@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/toArray';
-
 import {NewsService} from '../services/news.Service';
 import {News} from '../beans/news';
 
@@ -30,16 +27,14 @@ export class HomeComponent implements OnInit {
 	updateNews= () => {
 		this.newsService
 			.getNews()
-			.toArray()
-			.subscribe((news: News[]) => {
+			.then((news: News[]) => {
 				this.news = news;
 			});
 
-
 		this.newsService.randomNews()
-		.subscribe((news: News) => {
-			this.newsOfTheDay = news;
-		});
+			.then((news: News) => {
+				this.newsOfTheDay = news;
+			});
 	}
 
 	addLike= (news: News) => {
@@ -48,16 +43,12 @@ export class HomeComponent implements OnInit {
 
 	deleteNews= (news: News) => {
 		this.newsService.deleteNews(news)
-		.subscribe( (response: any) => {
-			this.updateNews();
-		} );
+			.then(() => this.updateNews());
 	}
 
 	addNews= () => {
 		this.newsService.addNews(this.nextNews)
-		.subscribe((response: any) => {
-			this.updateNews();
-		});		
+			.then((response: any) => this.updateNews() );
 	}
 
 
