@@ -7,7 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  email: string= 'ecommerce@worldline-sdco.com';
+	phone: string= "+33 XXXXXXXXX";
+	address: string= "Rue de la pointe, 59113 Seclin";	
+
+	message: string= "";
+
+	constructor(){}
+
+	updateMessage(data: any){
+		this.message= data.target.value;
+	}
+
+	sendMessage(){
+		this.message= "";
+	}
 
   ngOnInit() {
   }
