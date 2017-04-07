@@ -1,6 +1,6 @@
 # Ng2ECom
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.25.5.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## Development server
 To launch the Back end server, open a console in subfolder /api/express/ and Run 'npm run serve'. 
