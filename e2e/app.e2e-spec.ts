@@ -1,6 +1,6 @@
 import { Ng2EComPage } from './app.po';
 
-describe('ng2-e-com App', function() {
+describe('ng2-e-com App', () => {
   let page: Ng2EComPage;
 
   beforeEach(() => {
