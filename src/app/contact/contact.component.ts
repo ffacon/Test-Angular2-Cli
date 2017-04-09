@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ContactService} from '../services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  email: string= 'ecommerce@worldline-sdco.com';
-	phone: string= "+33 XXXXXXXXX";
-	address: string= "Rue de la pointe, 59113 Seclin";	
+  email: string;
+	phone: string;
+	address: string;		
 
 	message: string= "";
 
-	constructor(){}
+	constructor(contactService: ContactService){
+    this.email= contactService.email;
+		this.phone= contactService.phone;
+		this.address= contactService.address;
+
+  }
 
 	updateMessage(data: any){
 		this.message= data.target.value;
