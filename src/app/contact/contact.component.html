@@ -18,24 +18,29 @@
     		<li>
     			By postal mail: {{address}}
     		</li>
-    		<li>
+		</ul>
+    		
+			
     			Send us a message:
-    			<ul class="messageform">
+				<div class="messageform">
+    				<form (ngSubmit)="sendMessage()" [formGroup]="controlGroup">
 	    				<p>
 			    			<textarea 
-			    				(input)="updateMessage($event)"
-			    				placeholder="let us a message here..." 
-			    			></textarea>
+			    				[(ngModel)]="message"
+			    				[formControl]="messageCtrl"
+			    				placeholder="let us a message here...">
+							</textarea>
 	    				</p>
+						<p *ngIf="messageCtrl.hasError('containsValidCharacters')">Your message contains invalid Characters</p>
 	    				<p>
 	    					<input 
+	    						[disabled]="!controlGroup.valid" 
 	    						type="submit" 
-	    						value="send"
-	    						(click)="sendMessage()">
+	    						value="send" />
 	    				</p>
-    			</ul>
-
-    		</li>
-    	</ul>
+    				</form>
+				</div>
+    		
+    	
     </div>
 </div>
