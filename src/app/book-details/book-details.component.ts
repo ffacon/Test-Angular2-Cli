@@ -35,13 +35,26 @@ export class BookDetailsComponent implements OnInit {
 
 
 	getImagePath = (): string => {
-		return '';
+		if (!this.book){
+			return '';
+		}
+		return '/data/imgs/books/' + this.book.id + '.jpg';
 	}
 
+	getRatingAverage= (): string => {
+		if (!this.book){
+			return '';
+		}
+		return this.bookService.convertFromRating(this.bookService.getRatingAverage(this.book));
+	}
 
 	getStarsImagePath= (): string => {
-		return '';
+		if (!this.book){
+			return '';
+		}
+		return 'assets/styles/ktheme/img/' + this.getRatingAverage() + '-stars.svg'
 	}
 
+	
 
 }
