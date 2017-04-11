@@ -16,6 +16,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { BasketComponent } from './basket/basket.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
+import { KPagination } from './components/kpagination/kpagination';
 import { FilterFieldPipe } from './pipes/filter-field.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { UpdateDataPipe } from './pipes/update-data.pipe';
@@ -25,6 +26,7 @@ import {LocalStorageService} from './services/localStorage.service';
 import {NewsService} from './services/news.service';
 import {BooksService} from './services/books.service';
 import {ContactService} from './services/contact.service';
+import {DataContainerService} from './services/dataContainer.service';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import {ContactService} from './services/contact.service';
     BasketComponent,
     ProfileComponent,
     LoginComponent,
+    KPagination,
     FilterFieldPipe,
     OrderByPipe,
     UpdateDataPipe
@@ -52,7 +55,8 @@ import {ContactService} from './services/contact.service';
     UserService,  
     LocalStorageService, 
     BooksService,
-    ContactService
+    ContactService,
+    DataContainerService
   ],
   bootstrap: [AppComponent]
 })

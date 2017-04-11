@@ -1,11 +1,33 @@
-/* tslint:disable:no-unused-variable */
+import { Pipe, PipeTransform } from '@angular/core';
 
-import { TestBed, async } from '@angular/core/testing';
-import { FilterFieldPipe } from './filter-field.pipe';
+@Pipe({
+  name: 'filterField'
+})
+export class FilterFieldPipe implements PipeTransform {
 
-describe('FilterFieldPipe', () => {
-  it('create an instance', () => {
-    const pipe = new FilterFieldPipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+ transform(incoming: any[], fieldName: string, content: string): any {
+
+		if (incoming === undefined){
+			return;
+		}
+
+		let res: any[]= [];
+
+		incoming.forEach((val: any, index: number) => {
+
+			if (!content || !fieldName) {
+				res.push(val);
+			}
+	else {
+				let field: string = <string>val[fieldName];
+				if (field && field.toLowerCase().indexOf(content.toLowerCase()) > - 1) {
+					res.push(val);
+				}
+			}
+
+		});
+
+		return res;
+	}
+
+}
