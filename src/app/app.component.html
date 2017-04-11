@@ -8,7 +8,7 @@
 		</h1>
 		
 		<p *ngIf="userService.isLogged" class="k-basket-sum">
-			<a [routerLink]="['Basket']" title="See basket details">
+			<a [routerLink]="['basket']" title="See basket details">
 				<strong>
 					{{userService.basket.getItems().length}}
 				</strong>
@@ -19,7 +19,7 @@
 		<p *ngIf="userService.isLogged" class="k-login-data">
 			Welcome, 
 			<span id="user-name">
-				<a [routerLink]="['Profile']">
+				<a [routerLink]="['profile']">
 					{{userService.getUser().firstName}}
 					{{userService.getUser().lastName}}
 				</a>
@@ -28,7 +28,7 @@
 		</p>
 
 		<p *ngIf="!userService.isLogged" id="loginLink" class="k-login-data">
-			<a [routerLink]="['Login']">Sign-in</a>
+			<a [routerLink]="['login']">Sign-in</a>
 		</p>
 
 	</header>
@@ -52,7 +52,7 @@
 	
 	<footer role="contentinfo">
 		<p class="k-copyright">&copy; SDCO</p>
-		<a [routerLink]="['Contact']">Contact Us</a>
+		<a [routerLink]="['contact']">Contact Us</a>
 	</footer>
-	
+c
 </div>
