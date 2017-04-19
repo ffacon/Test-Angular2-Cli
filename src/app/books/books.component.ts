@@ -35,10 +35,11 @@ export class BooksComponent implements OnInit {
 		           public dataContainer: DataContainerService ) { }
 
   ngOnInit() {
-    this.booksService.getBooks()
-			.then((books: Book[]) => {
-				this.books = books;
-			});
+   this.booksService.getBooks()
+		.toArray()
+		.subscribe( ( books: Book[] ) => {
+			this.books = books;
+		} );
   }
 
   switchPage(page:number){
