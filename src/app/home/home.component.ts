@@ -12,7 +12,7 @@ import {News} from '../beans/news';
 })
 export class HomeComponent implements OnInit {
 
-  message: string = 'Welcome in our shop!!!';
+ 	message: string = 'Welcome in our shop!!!';
 	news: News[];
 	newsOfTheDay: News= {};
 	nextNews: News = {};
@@ -27,14 +27,16 @@ export class HomeComponent implements OnInit {
 	updateNews= () => {
 		this.newsService
 			.getNews()
-			.then((news: News[]) => {
+			.toArray()
+			.subscribe((news: News[]) => {
 				this.news = news;
 			});
 
+
 		this.newsService.randomNews()
-			.then((news: News) => {
-				this.newsOfTheDay = news;
-			});
+		.subscribe((news: News) => {
+			this.newsOfTheDay = news;
+		});
 	}
 
 	addLike= (news: News) => {
@@ -43,13 +45,16 @@ export class HomeComponent implements OnInit {
 
 	deleteNews= (news: News) => {
 		this.newsService.deleteNews(news)
-			.then(() => this.updateNews());
+		.subscribe( (response: any) => {
+			this.updateNews();
+		} );
 	}
 
 	addNews= () => {
 		this.newsService.addNews(this.nextNews)
-			.then((response: any) => this.updateNews() );
+		.subscribe((response: any) => {
+			this.updateNews();
+		});		
 	}
-
 
 }

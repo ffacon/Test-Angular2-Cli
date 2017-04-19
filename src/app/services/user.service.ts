@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
@@ -8,19 +8,21 @@ import 'rxjs/add/operator/do';
 import {LocalStorageService} from './localStorage.service';
 
 import {User} from  '../beans/user';
-import { Basket} from  '../beans/basket';
-import { Item} from  '../beans/item';
+import {Basket} from  '../beans/basket';
+import {Item} from '../beans/item';
+
 
 @Injectable()
-export class UserService {
+export class UserService{
 
-  private _isLogged: boolean = false;
+	private _isLogged: boolean = false;
 	private user: User;
 	private _basket: Basket;
 
-  private storeKey = 'ecItems';
 
-  constructor(
+	private storeKey = 'ecItems';
+
+	constructor(
 		@Inject(Http) private http: Http,
 		@Inject(LocalStorageService) private localStorage: LocalStorageService
 	){

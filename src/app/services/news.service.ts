@@ -1,36 +1,53 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/concat';
+
+import 'rxjs/add/observable/of';
+// import 'rxjs/add/operator/flatMap';
 
 import {News} from '../beans/news';
 
 @Injectable()
 export class NewsService{
 
-	private theNews: Promise<News[]>;
+	private theNews: Observable<News>;
 
 	constructor(private http: Http){}
 
-	getNews= (): Promise<News[]> => {
+	getNews= (): Observable<News> => {
 
-		if (!this.theNews){
-			this.theNews = this.http.get('/api/app/news')
-				.toPromise()
-				.then((response: Response): Array<News> => {
-					return <Array<News>>response.json();
-				});
+		if ( this.theNews !== undefined ){
+			return this.theNews;
 		}
 
-		return this.theNews;
+		return this.http.get('/api/app/news')
+			.map((response: Response): Array<News> => {
+				return <Array<News>>response.json();
+			})
+			.do((news: News[]) => {
+				this.theNews = Observable.from(news);
+			})
+			.flatMap((news: News[]) => {
+				// return Observable.fromArray(news);
+				return this.theNews;
+			});
 	}
 
 	addLike= (news: News) => {
 		this.http.post('/api/app/news/like/' + news.id, '')
-			.toPromise()
-			.then((response: Response): News => {
+			// .catch((err: any, source: any, caught: any): any => {
+			// 	console.log(err);
+			// })
+			.map((response: Response): News => {
 				return <News>response.json();
 			})
-			.then((updatedNews: News) => {
+			.subscribe((updatedNews: News) => {
 				news.likes = updatedNews.likes;
 			});
 	}
@@ -38,12 +55,15 @@ export class NewsService{
 	deleteNews= (news: News) => {
 
 		return this.http.delete('/api/app/news/' + news.id)
-			.toPromise()
-			.then((response: Response) => {
-				this.theNews = this.getNews().then((allnews: News[]) => {
-					return allnews.filter((currentNews: News) => currentNews.id !== news.id)
-				});
+		.do( (response: Response) => {
+
+			this.theNews = this.theNews
+			.filter((currentNews: News) => {
+				return currentNews.id !== news.id;
 			});
+
+		} );
+
 	}
 
 	addNews= (news: News) => {
@@ -53,23 +73,20 @@ export class NewsService{
 		let postOptions= new RequestOptions({ headers: headers});
 
 		return this.http.post('/api/app/news', JSON.stringify(news), postOptions)
-		.toPromise()
-		.then( (response: Response) => {
+		.do( (response: Response) => {
 			let addedNews: News = <News>response.json();
-			this.theNews = this.theNews.then( (allNews: News[]) => {
-				allNews.push(news);
-				return allNews;
-			} );
+			this.theNews = this.theNews
+			.concat(Observable.of(addedNews));
 		} );
-
 	}
 
-	randomNews= (): Promise<News> => {
+	randomNews= (): Observable<News> => {
 
 		return this.http.get('/api/app/news/random')
-			.toPromise()
-			.then((response: Response) => {
+			.map((response: Response) => {
 				return <News>response.json();
 			});
+			
 	}
+
 }
