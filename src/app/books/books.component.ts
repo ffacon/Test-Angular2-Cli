@@ -9,6 +9,8 @@ import { BooksService} from '../services/books.service';
 })
 export class BooksComponent implements OnInit {
 
+  booksPerPageFilter: number = 4;
+  currentPage: number = 1; 
   books: Book[];
 
   constructor(private booksService:BooksService ) { }
@@ -21,5 +23,9 @@ export class BooksComponent implements OnInit {
 
   getRatingClass = this.booksService.getRatingClass;
 
-  
+  switchPage(page:number){
+    	this.currentPage = page;
+  }
+
+
 }
