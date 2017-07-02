@@ -11,6 +11,7 @@ export class BooksComponent implements OnInit {
 
   booksPerPageFilter: number = 4;
   currentPage: number = 1; 
+  bookNameFilter: string = '';
   books: Book[];
 
   constructor(private booksService:BooksService ) { }
