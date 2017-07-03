@@ -6,7 +6,7 @@
       </p>
       <p>
           <label for="bookName">Filter by name</label>
-          <input type="text" id="bookName" name="bookName" />
+          <input type="text" id="bookName" name="bookName" [(ngModel)]="bookNameFilter"/>
       </p>
       <p>
           <label for="bookOrderBy">Order By</label>
@@ -27,7 +27,8 @@
       
   <div class="k-catalog" id="list-products" >
 
-      <article *ngFor="let book of books |  slice:(currentPage-1)*booksPerPageFilter:currentPage*booksPerPageFilter" class="k-product hproduct">
+      <article *ngFor="let book of books |  filterField:'name':bookNameFilter 
+                                         |  slice:(currentPage-1)*booksPerPageFilter:currentPage*booksPerPageFilter" class="k-product hproduct">
           <div class="photo-data">
               <p>
                   <a href="#">
