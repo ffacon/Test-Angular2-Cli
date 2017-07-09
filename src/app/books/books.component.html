@@ -27,7 +27,8 @@
       
   <div class="k-catalog" id="list-products" >
 
-      <article *ngFor="let book of books |  filterField:'name':bookNameFilter 
+      <article *ngFor="let book of books |  filterField: 'name' : bookNameFilter 
+                                         |  updateData
                                          |  slice:(currentPage-1)*booksPerPageFilter:currentPage*booksPerPageFilter" class="k-product hproduct">
           <div class="photo-data">
               <p>
@@ -64,7 +65,7 @@
           </div>
       </article>        
   </div>
-  <kpagination  [startPage]="currentPage" [totalNbItems]="books.length" [nbItemsPerPage]="booksPerPageFilter"></kpagination>
+  <kpagination  [startPage]="currentPage" [totalNbItems]="dataContainer.filteredBooks?.length" [nbItemsPerPage]="booksPerPageFilter"></kpagination>
   
 
 </div>
