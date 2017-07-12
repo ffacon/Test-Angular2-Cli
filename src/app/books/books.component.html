@@ -10,7 +10,7 @@
       </p>
       <p>
           <label for="bookOrderBy">Order By</label>
-          <select name="bookOrderBy" id="bookOrderBy" >
+          <select name="bookOrderBy" id="bookOrderBy"  [(ngModel)]="bookOrderBy">
               <option>name</option>
               <option>price</option>
               <option>rating</option>
@@ -20,7 +20,7 @@
           <label for="Reverse filter">
               Reverse filter
           </label> 
-          <input id="switchBookOrder" type="checkbox" >
+          <input name="Reversefilter" id="switchBookOrder" type="checkbox" [(ngModel)]="reverseOrderFilter"  >
           
       </p>
   </form>
@@ -29,6 +29,7 @@
 
       <article *ngFor="let book of books |  filterField: 'name' : bookNameFilter 
                                          |  updateData
+                                         |  orderBy:bookOrderBy:reverseOrderFilter 
                                          |  slice:(currentPage-1)*booksPerPageFilter:currentPage*booksPerPageFilter" class="k-product hproduct">
           <div class="photo-data">
               <p>
