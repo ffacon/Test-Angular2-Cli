@@ -8,7 +8,7 @@
 		</h1>
 		
 		<p *ngIf="userService.isLogged" class="k-basket-sum">
-			<a [routerLink]="['Basket']" title="See basket details">
+			<a a href="#" title="See basket details">
 				<strong>
 					{{userService.basket.getItems().length}}
 				</strong>
@@ -19,16 +19,16 @@
 		<p *ngIf="userService.isLogged" class="k-login-data">
 			Welcome, 
 			<span id="user-name">
-				<a [routerLink]="['Profile']">
+				<a href="#">
 					{{userService.getUser().firstName}}
 					{{userService.getUser().lastName}}
 				</a>
 			</span> 
-			[<strong><a href="#" (click)="logout()" >Logout</a></strong>]
+			<strong><a href="#"  >Logout</a></strong>
 		</p>
 
 		<p *ngIf="!userService.isLogged" id="loginLink" class="k-login-data">
-			<a [routerLink]="['Login']">Sign-in</a>
+			<a a href="#" >Sign-in</a>
 		</p>
 
 	</header>
@@ -37,7 +37,7 @@
 		<h2 class="k-skip"><a href="#wrapper">Main navigation (Skip it)</a></h2>
 		<ul class="k-navbar">
 			<li class="home"><a [routerLink]="['home']">Home</a></li>
-			<li><a [routerLink]="['books']">Books</a></li>
+			<li><a a href="#" >Books</a></li>
 		</ul>
 	</nav>
 	
@@ -45,14 +45,11 @@
 		<div id="main" role="main">
 			<router-outlet></router-outlet>
 		</div>
-
-		<!-- <aside role="complementary">
-		</aside> -->
 	</div>
 	
 	<footer role="contentinfo">
 		<p class="k-copyright">&copy; SDCO</p>
-		<a [routerLink]="['Contact']">Contact Us</a>
+		<a a href="#" >Contact Us</a>
 	</footer>
 	
 </div>
