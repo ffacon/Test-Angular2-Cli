@@ -16,9 +16,5 @@ import { Router }   from '@angular/router';
 export class AppComponent {
   constructor(private router: Router, public userService: UserService) {}
 
-	logout= (): boolean => {
-		this.userService.logout();
-		this.router.navigate(['Home']);
-		return false;
-	}
+	
 }
