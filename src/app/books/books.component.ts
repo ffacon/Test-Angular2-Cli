@@ -17,7 +17,7 @@ export class BooksComponent implements OnInit {
     this.booksService.getBooks()
     .then((books: Book[]) => {
       this.books = books;
-    }
+    })
   }
 
 }
