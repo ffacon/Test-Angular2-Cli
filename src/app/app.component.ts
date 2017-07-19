@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import {BooksService} from './services/books.service';
 import {ContactService} from './services/contact.service';
 import {UserService} from './services/user.service';
+import { Basket } from './beans/basket'
 
 import { Router }   from '@angular/router';
 
