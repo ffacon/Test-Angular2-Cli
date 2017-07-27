@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import {LocalStorageService} from './LocalStorage.service';
+import {LocalStorageService} from './localStorage.service';
 
 import {User} from  '../beans/user';
 import { Basket} from  '../beans/basket';
