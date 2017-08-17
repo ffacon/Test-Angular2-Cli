@@ -1,46 +1,50 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
-import {Book} from '../beans/book';
-import {Comment} from '../beans/comment';
 
-import 'rxjs/add/operator/toPromise';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/filter';
+
+import {Comment} from '../beans/comment';
+import {Book} from '../beans/book';
 
 @Injectable()
-export class BooksService {
+export class BooksService{
 
-  private books: Promise<Book[]>;
+	private books: Observable<Book>;
 
 	constructor(private http: Http){}
 
-	getBooks= (): Promise<Book[]> => {
+	getBooks= (): Observable<Book> => {
 
 		if (this.books !== undefined){
 			return this.books;
 		}
 
-		this.books= this.http.get('/data/books.json')
-      .toPromise()
-			.then((response: Response) => {
+		return this.http.get('/data/books.json')
+			.map((response: Response) => {
 				let books: Book[] = <Book[]>response.json();
-				books.forEach( (book: Book) => {
-					this.includeRating(book);
-				} )
 				return books;
+			})
+			.do((books: Book[]) => {
+				this.books = Observable.from(books);
+			})
+			.flatMap((books: Book[]) => {
+				return this.books;
+			})
+			.do((book: Book) => {
+				this.includeRating(book);
 			});
-
-		return this.books;
 	}
 
-	getBook= (id: number): Promise<Book> => {
-
-		return this.getBooks()
-			.then((books: Book[]) => {
-				let filteredBooks = books.filter((book: Book) => book.id === id);
-				if (filteredBooks.length === 1) {
-					return filteredBooks[0];
-				}
-			});
+	getBook= (id: number): Observable<Book> => {
+		return this.getBooks().filter((book: Book) => {
+			return book.id === id;
+		});
 	}
 
 	getRatingAverage = (book: Book):number => {
@@ -49,7 +53,7 @@ export class BooksService {
 
 		if (!book.comments) {
 			return -1;
-		}
+		}		
 
 		book.comments.forEach((comment: Comment, indice: number) => {
 			if (comment.rate !== undefined) {
