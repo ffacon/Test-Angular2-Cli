@@ -1,48 +1,55 @@
 import { Component, OnInit } from '@angular/core';
-import { Book} from '../beans/book';
-import { BooksService} from '../services/books.service';
-import { DataContainerService} from '../services/data-container.service'
-import { FilterFieldPipe } from '../pipes/filter-field.pipe';
-import { UpdateDataPipe } from '../pipes/update-data.pipe';
-import { OrderByPipe } from '../pipes/order-by.pipe';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+
+import {Book} from '../beans/book';
+import {BooksService} from '../services/books.service';
+import {UserService} from '../services/user.service';
+import {DataContainerService} from '../services/data-container.service';
+
+import {KPagination} from '../components/kpagination/kpagination';
+
+import {FilterFieldPipe} from '../pipes/filter-field.pipe';
+import {UpdateDataPipe} from '../pipes/update-data.pipe';
+import {OrderByPipe} from '../pipes/order-by.pipe';
 
 
- 
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
+
 })
 export class BooksComponent implements OnInit {
 
-  booksPerPageFilter: number = 4;
-  currentPage: number = 1; 
-  bookNameFilter: string = '';
-  reverseOrderFilter: boolean = false;
-  books: Book[];
+  books: Book[]= [];
+	currentPage: number = 1;
 
-  constructor(private router: Router,
-    private booksService: BooksService, 
-    public userService: UserService,
-    public dataContainer: DataContainerService) { }
+  //pagination filters
+	bookNameFilter: string = '';
+	booksPerPageFilter: number = 4;
+	reverseOrderFilter: boolean = false;
+
+  constructor( private router: Router,
+               private booksService: BooksService, 
+		           public userService: UserService,
+		           public dataContainer: DataContainerService ) { }
 
   ngOnInit() {
-    this.booksService.getBooks().then((books: Book[]) => {
-      this.books = books;
-    });
+   this.booksService.getBooks()
+		.toArray()
+		.subscribe( ( books: Book[] ) => {
+			this.books = books;
+		} );
   }
-
-  getRatingClass = this.booksService.getRatingClass;
 
   switchPage(page:number){
-    	this.currentPage = page;
-  }
+		this.currentPage = page;
+	}
+
+	getRatingClass = this.booksService.getRatingClass;
 
   addToBasket(book: Book) {
 		this.userService.basket.addProduct(book);
 		this.router.navigate(['basket']);
-  }
-
+	}
 }
