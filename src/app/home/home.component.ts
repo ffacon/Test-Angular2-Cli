@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
 
 	addNews= () => {
 		this.newsService.addNews(this.nextNews)
-			.then((response: any) => this.updateNews() );
+		.then((addedNews: News) => this.news.push(addedNews) );
 	}
 
 
