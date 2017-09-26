@@ -11,34 +11,58 @@ export class NewsService{
 
 	constructor(private http: Http){}
 
-	getNews= (): Promise<News[]> => {
+	getNews(): Promise<News[]> {
 
-		//USE HTTP SERVICE INSTEADs
+		if(!this.theNews){
+			this.theNews = this.http.get('/api/app/news')
+			.toPromise().then( (response) : Promise<News[]> => {
+				console.log("apres the");
+				return response.json();
+			} )
+			console.log("apres Get");
+		}
 		return this.theNews;
 	}
 
 	addLike= (news: News) => {
-		//ADD LIKE ON SERVER AND UPDATE CLIENT ON SUCCESS
+		this.http.post('/api/app/news/like/'+news.id,'')
+		.toPromise()
+		.then( (response) =>  { 
+			let updatedNews : News = response.json();
+			news.likes = updatedNews.likes;
+			 } )
+		//.then((updatedNews : News) => news.likes = updatedNews.likes)
 	}
 
 	deleteNews= (news: News) => {
 
-		//SEND DELETE TO THE SERVER
-		//AND UPDATE YOUR LOCAL NEWS ON SUCCESS
-		return new Promise<News>( (resolve, reject) => resolve() );
+		return this.http.delete('/api/app/news/'+news.id).
+		toPromise().
+		then( () => {
+			this.theNews = this.getNews().then((allNews: News[] ) => { 
+				return allNews.filter((currentNews:News) => currentNews.id !== news.id)
+				} )
+		} )
 	}
 
-	addNews= (news: News) => {
+	addNews= (news: News)  => {
 
-		//POST THE NEWS TO ADD ON SERVER SIDE (use headers to do that )
-		//THE SERVER ANSWERS WITH THE ADDED NEWS, USE THIS ANSWER TO
-		//ADD THE NEWS TO THE EXSITING LIST OF NEWS
-		return new Promise<News>( (resolve, reject) => resolve() );
-
+		let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+		let postOptions= new RequestOptions({ headers: headers});
+		
+		return this.http.post('api/app/news',JSON.stringify(news),postOptions)
+		.toPromise()
+		.then((response :Response) => {
+			let addedNews: News = <News> response.json();
+			return addedNews
+		})
 	}
 
 	randomNews= (): Promise<News> => {
-
-		return new Promise<News>( (resolve, reject) => resolve({}) );
+		return this.http.get('api/app/news/random')
+		.toPromise()
+		.then( (response : Response) => { 
+			return response.json()} )
 	}
 }
