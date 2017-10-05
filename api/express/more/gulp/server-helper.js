@@ -39,6 +39,7 @@ class ServerHelper{
 			for (var i in news){
 				let currentNews= news[i];
 				if (currentNews.id === newsId){
+					news.splice(i,1);
 					res.status(200);
 					res.send('OK');
 					return;
