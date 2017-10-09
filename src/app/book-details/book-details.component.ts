@@ -24,7 +24,7 @@ export class BookDetailsComponent implements OnInit {
 	ngOnInit(): void {
 		let that = this;
 		this.sub = this.route.params.subscribe( params => {
-       this.bookId = +params['id']; // (+) converts string 'bookId' to a number
+        this.bookId = +params['id']; // (+) converts string 'bookId' to a number
 
        // In a real app: dispatch action to load the details here.
     });
@@ -39,13 +39,26 @@ export class BookDetailsComponent implements OnInit {
 
 
 	getImagePath = (): string => {
-		return '';
+		if(!this.book){
+			return '';
+		}
+		return '/data/imgs/books/'+ this.book.id + '.jpg'; 
+		
 	}
 
+
+	getRatingAverage= (): string => {
+		if(!this.book){
+			return '';
+		}
+		return this.bookService.convertFromRating(this.bookService.getRatingAverage(this.book));
+	} 
 
 	getStarsImagePath= (): string => {
-		return '';
+		if (!this.book){
+			return '';
+		}
+		return 'assets/styles/ktheme/img/' + this.getRatingAverage() + '-stars.svg'
 	}
-
 
 }
