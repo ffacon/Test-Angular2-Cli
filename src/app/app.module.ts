@@ -22,6 +22,7 @@ import {UserService} from './services/user.service';
 import {LocalStorageService} from './services/localStorage.service';
 import {NewsService} from './services/news.service';
 import {BooksService} from './services/books.service';
+import {ContactService} from './services/contact.service';
 
 
 @NgModule({
@@ -44,7 +45,11 @@ import {BooksService} from './services/books.service';
     HttpModule,
     routing
   ],
-  providers: [UserService,  LocalStorageService, BooksService],
+  providers: [UserService,  
+              LocalStorageService, 
+              BooksService,
+              ContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
