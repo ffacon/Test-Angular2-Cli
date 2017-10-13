@@ -23,6 +23,8 @@ import {LocalStorageService} from './services/localStorage.service';
 import {NewsService} from './services/news.service';
 import {BooksService} from './services/books.service';
 import {ContactService} from './services/contact.service';
+import { KPagination } from './components/kpagination/kpagination';
+import { DataContainerService } from './services/data-container.service';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import {ContactService} from './services/contact.service';
     LoginComponent,
     FilterFieldPipe,
     OrderByPipe,
-    UpdateDataPipe
+    UpdateDataPipe,
+    KPagination
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import {ContactService} from './services/contact.service';
   providers: [UserService,  
               LocalStorageService, 
               BooksService,
-              ContactService
+              ContactService,
+              DataContainerService
   ],
   bootstrap: [AppComponent]
 })
