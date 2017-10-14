@@ -5,6 +5,9 @@ import { DataContainerService} from '../services/data-container.service'
 import { FilterFieldPipe } from '../pipes/filter-field.pipe';
 import { UpdateDataPipe } from '../pipes/update-data.pipe';
 import { OrderByPipe } from '../pipes/order-by.pipe';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
+
 
  
 @Component({
@@ -18,10 +21,12 @@ export class BooksComponent implements OnInit {
   currentPage: number = 1; 
   bookNameFilter: string = '';
   reverseOrderFilter: boolean = false;
-  bookOrderBy: string;
   books: Book[];
 
-  constructor(private booksService: BooksService, public dataContainer: DataContainerService ) { }
+  constructor(private router: Router,
+    private booksService: BooksService, 
+    public userService: UserService,
+    public dataContainer: DataContainerService) { }
 
   ngOnInit() {
     this.booksService.getBooks().then((books: Book[]) => {
@@ -35,5 +40,9 @@ export class BooksComponent implements OnInit {
     	this.currentPage = page;
   }
 
+  addToBasket(book: Book) {
+		this.userService.basket.addProduct(book);
+		this.router.navigate(['basket']);
+  }
 
 }

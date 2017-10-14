@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../services/user.service';
 import {BooksService} from '../services/books.service';
 import {Book} from '../beans/book';
-import { ActivatedRoute  }  from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-details',
@@ -17,6 +17,7 @@ export class BookDetailsComponent implements OnInit {
   private bookId :number;
 
 	constructor(
+		private router: Router,
 		private route: ActivatedRoute,
 		public bookService: BooksService,
 		public userService: UserService){}
@@ -60,5 +61,10 @@ export class BookDetailsComponent implements OnInit {
 		}
 		return 'assets/styles/ktheme/img/' + this.getRatingAverage() + '-stars.svg'
 	}
+
+	addToBasket(book: Book) {
+		this.userService.basket.addProduct(book);
+		this.router.navigate(['basket']);
+  }
 
 }
